@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSiteStatesTable extends Migration
+class CreateLabelKeysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateSiteStatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('site_states', function (Blueprint $table) {
+        Schema::create('label_keys', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('site_id');
-            $table->foreign('site_id')->references('id')->on('sites');
-            $table->text('content');
-            $table->dateTime('scrape_date');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateSiteStatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('site_states');
+        Schema::dropIfExists('label_keys');
     }
 }
