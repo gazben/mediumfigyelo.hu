@@ -2,6 +2,10 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Format;
+use App\Console\Commands\Inspect;
+use App\Console\Commands\Lint;
+use App\Console\Commands\Test;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +17,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Format::class,
+        Inspect::class,
+        Lint::class,
+        Test::class,
     ];
 
     /**
@@ -21,6 +28,8 @@ class Kernel extends ConsoleKernel
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function schedule(Schedule $schedule)
     {

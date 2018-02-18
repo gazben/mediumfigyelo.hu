@@ -1,0 +1,25 @@
+language: php
+
+php:
+  - 7.1
+
+before_install:
+  - mysql -e 'create database mediafigyelo_test;'
+
+before_script:
+  - cp .env.travis .env
+  - composer install --no-interaction
+  - php artisan key:generate
+  - php artisan migrate --seed
+
+services:
+  - mysql
+
+cache:
+  directories:
+    - vendor
+
+script:
+  - php artisan lint
+  - php artisan inspect
+  - php artisan test --env=testing
