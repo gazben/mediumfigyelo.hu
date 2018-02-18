@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        if(env('APP_ENV') !== 'production'){
+            $this->call(AddAdminUser::class);
+        }
+
+        $this->call(KeywordSeeder::class);
     }
 }
