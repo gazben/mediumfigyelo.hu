@@ -17,7 +17,7 @@ class CreateSiteStatesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('site_id');
             $table->foreign('site_id')->references('id')->on('sites');
-            $table->text('content');
+            $table->longText('content');
             $table->dateTime('scrape_date');
             $table->timestamps();
         });

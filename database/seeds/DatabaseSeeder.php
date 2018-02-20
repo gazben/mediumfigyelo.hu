@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->call(KeywordSeeder::class);
+        $this->call(SiteSeeder::class);
     }
 }

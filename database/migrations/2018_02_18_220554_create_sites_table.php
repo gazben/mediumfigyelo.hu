@@ -18,6 +18,7 @@ class CreateSitesTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('url');
+            $table->string('method')->default('GET');
             $table->string('owner')->nullable();
             $table->string('comment')->nullable();
             $table->timestamps();
