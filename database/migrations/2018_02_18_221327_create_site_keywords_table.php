@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLabelsTable extends Migration
+class CreateSiteKeywordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateLabelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('labels', function (Blueprint $table) {
+        Schema::create('site_keywords', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('site_id');
             $table->foreign('site_id')->references('id')->on('sites');
 
-            $table->unsignedInteger('label_key_id');
-            $table->foreign('label_key_id')->references('id')->on('label_keys');
+            $table->unsignedInteger('keyword_id');
+            $table->foreign('keyword_id')->references('id')->on('keywords');
             $table->string('value');
+            $table->dateTime('snapshot_time');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateLabelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('labels');
+        Schema::dropIfExists('site_keywords');
     }
 }
