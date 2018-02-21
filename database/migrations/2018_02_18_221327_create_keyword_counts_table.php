@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSiteKeywordsTable extends Migration
+class CreateKeywordCountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateSiteKeywordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('site_keywords', function (Blueprint $table) {
+        Schema::create('keyword_counts', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('count');
             $table->unsignedInteger('site_id');
             $table->foreign('site_id')->references('id')->on('sites');
 
             $table->unsignedInteger('keyword_id');
             $table->foreign('keyword_id')->references('id')->on('keywords');
-            $table->string('value');
-            $table->dateTime('snapshot_time');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateSiteKeywordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('site_keywords');
+        Schema::dropIfExists('keyword_counts');
     }
 }
