@@ -26,6 +26,20 @@ class SiteSeeder extends Seeder
             ['Kisalföld', '', 'http://www.kisalfold.hu/', 'GET', ''],
             ['Békés Megyei Hírlap', '', 'https://www.beol.hu/', 'GET', ''],
             ['Info-Győr', '', 'http://www.infogyor.hu/', 'GET', ''],
+            ['TEOL online', '', 'https://www.teol.hu/', 'GET', ''],
+            ['BAMA online', '', 'https://www.bama.hu/', 'GET', ''],
+            ['KEON online', '', 'http://www.keon.hu/', 'GET', ''],
+            ['Szabolcs Online', '', 'http://www.szon.hu/', 'GET', ''],
+            ['Civishir', '', 'http://civishir.hu/', 'GET', ''],
+            ['SZOLJON online', '', 'https://www.szoljon.hu/', 'GET', ''],
+            ['Heol.hu', '', 'https://www.heol.hu/', 'GET', ''],
+            ['Kemma.hu', '', 'https://www.kemma.hu/', 'GET', ''],
+            ['Baon.hu', '', 'https://www.baon.hu/', 'GET', ''],
+            ['Vaol.hu', '', 'https://www.vaol.hu/', 'GET', ''],
+            ['Feol.hu', '', 'https://www.feol.hu/', 'GET', ''],
+            ['Duol.hu', '', 'https://www.duol.hu/', 'GET', ''],
+            ['Zaol.hu', '', 'https://www.zaol.hu/', 'GET', ''],
+            ['Veol.hu', '', 'https://www.veol.hu/', 'GET', ''],
         ];
 
         foreach ($sites as $site) {
