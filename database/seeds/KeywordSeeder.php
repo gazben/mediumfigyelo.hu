@@ -17,7 +17,9 @@ class KeywordSeeder extends Seeder
         ];
 
         foreach ($keywords as $keyword) {
-            $entity = new Keyword();
+            $entity = Keyword::firstOrNew([
+                'keyword' => $keyword
+            ]);
             $entity->keyword = $keyword;
             $entity->save();
         }

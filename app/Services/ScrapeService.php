@@ -68,7 +68,7 @@ class ScrapeService
     {
         $result = new SiteState();
         $result->site()->associate($site);
-        $result->content = $content;
+        $result->content = utf8_encode($content);
         $result->scrape_date = Carbon::now();
 
         return $result;

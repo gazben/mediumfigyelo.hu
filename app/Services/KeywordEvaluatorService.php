@@ -16,8 +16,11 @@ class KeywordEvaluatorService
 
     public function deleteExistingKeywordCounts(Collection $keywords, Collection $sites)
     {
+        $siteIds = $sites->map(function($item){
+            return $item->states()->select('id')->get();
+        });
         // Remove old
-        $keywordCounts = KeywordCount::whereIn('site_id', $sites->pluck('id'))
+        $keywordCounts = KeywordCount::whereIn('site_state_id', $siteIds->pluck('id'))
             ->whereIn('keyword_id', $keywords->pluck('id'))
             ->get();
 
