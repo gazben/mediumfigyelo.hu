@@ -16,8 +16,8 @@ class CreateKeywordCountsTable extends Migration
         Schema::create('keyword_counts', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('count');
-            $table->unsignedInteger('site_id');
-            $table->foreign('site_id')->references('id')->on('sites');
+            $table->unsignedInteger('site_state_id');
+            $table->foreign('site_state_id')->references('id')->on('site_states');
 
             $table->unsignedInteger('keyword_id');
             $table->foreign('keyword_id')->references('id')->on('keywords');

@@ -56,7 +56,7 @@ class ScrapeService
         }
 
         foreach ($result as $entry) {
-            if(!$entry->save()) {
+            if (!$entry->save()) {
                  Log::error('SiteState cannot be saved: ' . $entry->site->title);
             }
         }

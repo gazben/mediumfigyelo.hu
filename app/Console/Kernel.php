@@ -2,9 +2,11 @@
 
 namespace App\Console;
 
+use App\Console\Commands\EvaluateKeywords;
 use App\Console\Commands\Format;
 use App\Console\Commands\Inspect;
 use App\Console\Commands\Lint;
+use App\Console\Commands\ScrapeSite;
 use App\Console\Commands\Test;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -33,8 +35,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command(ScrapeSite::class)->hourly();
+        $schedule->command(EvaluateKeywords::class)->hourly();
     }
 
     /**

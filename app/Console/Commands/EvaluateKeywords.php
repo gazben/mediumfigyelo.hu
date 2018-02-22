@@ -5,8 +5,8 @@ namespace App\Console\Commands;
 use App\Models\Keyword;
 use App\Models\Site;
 use App\Services\KeywordEvaluatorService;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class EvaluateKeywords extends Command
 {
@@ -43,16 +43,10 @@ class EvaluateKeywords extends Command
      */
     public function handle()
     {
-        $sites = Site::all();
+        $sites = Site::with('states')->get();
         $keywords = Keyword::all();
-        $from = Carbon::now();
-        $to = Carbon::now();
-        $interval = Carbon::now()->hour(0)->minute(30);
 
         $this->info('Evaluation started.');
-        $this->info('From: ' . $from->format('Y-m-d H:i'));
-        $this->info('To: ' . $to->format('Y-m-d H:i'));
-        $this->info('Interval: ' . $interval->format('H:i'));
 
         $this->info('');
         $this->info('Sites: ' . $sites->count());
@@ -66,7 +60,9 @@ class EvaluateKeywords extends Command
             $this->info($keyword->keyword);
         }
 
-        $this->keywordEvaluatorService->evaluate($keywords, $sites, $from, $to, $interval);
+        DB::transaction(function () use ($keywords, $sites) {
+            $this->keywordEvaluatorService->reEvaluate($keywords, $sites);
+        });
 
         $this->info('Sok boldogsagot...');
     }

@@ -11,8 +11,8 @@ class Site extends Model
         return $this->hasMany(SiteState::class);
     }
 
-    public function labels()
+    public function keywordCounts()
     {
-        return $this->hasMany(SiteKeyword::class);
+        return $this->hasMany(KeywordCount::class);
     }
 }
