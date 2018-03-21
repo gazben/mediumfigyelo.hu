@@ -14,6 +14,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+
+<!-- Mit keresel itt? -->
+
 <div id="app"></div>
 
 <!-- Scripts -->
