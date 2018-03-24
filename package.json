@@ -22,6 +22,7 @@
     "dependencies": {
         "chart.js": "^2.7.2",
         "vue-chartjs": "^3.2.1",
+        "vue-cookie-law": "^1.4.0",
         "vue-router": "^3.0.1"
     }
 }

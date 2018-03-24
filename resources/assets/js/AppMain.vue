@@ -17,18 +17,25 @@
                     <div class="col"></div>
                     <div class="col-10">
                         <small>
-                            <strong>Írj nekem (lehet szépet és rosszat is): </strong><a href="mailto:hello@mediumfigyelo.hu">hello@mediumfigyelo.hu</a> | Gazder Bence 2018
+                            <strong>Írj nekem: </strong><a href="mailto:hello@mediumfigyelo.hu">hello@mediumfigyelo.hu</a> | Gazder Bence 2018
                         </small>
                     </div>
                     <div class="col"></div>
                 </div>
+                <cookie-law theme="base" buttonText="Értem">
+                    <div slot="message">
+                        Az oldalon <a href="https://hu.wikipedia.org/wiki/HTTP-s%C3%BCti">sütiket</a> használok a jobb működés érdekében.
+                    </div>
+                </cookie-law>
             </div>
         </footer>
     </div>
 </template>
 
 <script>
+    import CookieLaw from 'vue-cookie-law'
     export default {
         name: 'app',
+        components: { CookieLaw }
     };
 </script>
