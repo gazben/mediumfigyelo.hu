@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\KeywordResource;
+use App\Http\Resources\SiteResource;
 use App\Models\Keyword;
 use App\Models\Site;
 use Illuminate\Http\Request;
@@ -15,16 +17,12 @@ class IndexController extends Controller
 
     public function getKeywords()
     {
-        return json_encode([
-            'data' => Keyword::all(['id', 'keyword']),
-        ]);
+        return KeywordResource::collection(Keyword::all());
     }
 
     public function getSites()
     {
-        return json_encode([
-            'data' => Site::all(),
-        ]);
+        return SiteResource::collection(Site::all());
     }
 
     /**

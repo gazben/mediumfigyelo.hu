@@ -2,31 +2,44 @@
     <div id="app">
         <div class="header">
             <div class="mt-3">
-                <h1 class="text-center">Médiafigyelő</h1>
+                <h1 class="text-center">Médiumfigyelő</h1>
             </div>
 
             <a target="_blank" href="https://github.com/gazben/mediumfigyelo.hu"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
         </div>
         <hr>
 
-        <router-view></router-view>
+        <div class="content">
+            <div class="container">
+                <div class="col"></div>
+                <div class="col-10">
+                    <router-view></router-view>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
 
         <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col"></div>
-                    <div class="col-10">
-                        <small>
-                            <strong>Írj nekem: </strong><a href="mailto:hello@mediumfigyelo.hu">hello@mediumfigyelo.hu</a> | Gazder Bence 2018
-                        </small>
+            <div class="container container-fluid">
+                <div class="row py-4">
+                    <div class="col-12">
+                        <div class="container container-fluid">
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="col-5">
+                                    <ul style="list-style: none; color: #373737">
+                                        <li><a href="#">Impresszum</a></li>
+                                        <li><a href="#">GYIK</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-5">
+
+                                </div>
+                                <div class="col-1"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col"></div>
                 </div>
-                <cookie-law theme="base" buttonText="Értem">
-                    <div slot="message">
-                        Az oldalon <a href="https://hu.wikipedia.org/wiki/HTTP-s%C3%BCti">sütiket</a> használok a jobb működés érdekében.
-                    </div>
-                </cookie-law>
             </div>
         </footer>
     </div>
@@ -39,3 +52,31 @@
         components: { CookieLaw }
     };
 </script>
+
+<style>
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+    body {
+        /* Margin bottom by footer height */
+        margin-bottom: 100px;
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 100px;
+        background-color: #f5f5f5;
+    }
+
+    body > .container {
+        padding: 60px 15px 0;
+    }
+
+    .footer > .container {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+</style>

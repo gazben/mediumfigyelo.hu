@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class KeywordCount extends Model
 {
+    public $timestamps = false;
+
     public function siteState()
     {
         return $this->belongsTo(SiteState::class);
