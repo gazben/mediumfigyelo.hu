@@ -11,31 +11,25 @@
 
         <div class="content">
             <div class="container">
-                <div class="col"></div>
-                <div class="col-10">
+                <div class="col-12">
                     <router-view></router-view>
                 </div>
-                <div class="col"></div>
             </div>
         </div>
 
         <footer class="footer">
+            <hr>
             <div class="container container-fluid">
                 <div class="row py-4">
                     <div class="col-12">
                         <div class="container container-fluid">
                             <div class="row">
-                                <div class="col-1"></div>
                                 <div class="col-5">
                                     <ul style="list-style: none; color: #373737">
                                         <li><a href="#">Impresszum</a></li>
                                         <li><a href="#">GYIK</a></li>
                                     </ul>
                                 </div>
-                                <div class="col-5">
-
-                                </div>
-                                <div class="col-1"></div>
                             </div>
                         </div>
                     </div>

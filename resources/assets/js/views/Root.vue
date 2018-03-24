@@ -38,21 +38,33 @@
                 </div>
             </template>
         </div>
-
+        <div class="chart p-1">
+            <h2>Diagram</h2>
+            <template v-if="stats !== null">
+                <chart :data="stats" />
+            </template>
+            <template v-else>
+                <h4>Válassz ki paramétereket a beállításoknál!</h4>
+            </template>
+        </div>
     </div>
 </template>
 
 <script>
     import Datepicker from 'vuejs-datepicker';
-    import VueCharts from 'vue-chartjs'
+    import Chart from '../components/Chart'
 
     export default {
         name: 'root',
-        components: { Datepicker, VueCharts },
+        components: { Datepicker, Chart },
         mounted() {
             console.log('Szia uram!')
             this.fetchKeywords()
             this.fetchSites()
+
+            if (localStorage.getItem('stats')) this.stats = JSON.parse(localStorage.getItem('stats'));
+            if (localStorage.getItem('selectedKeywords')) this.selectedKeywords = JSON.parse(localStorage.getItem('selectedKeywords'));
+            if (localStorage.getItem('selectedSites')) this.selectedSites = JSON.parse(localStorage.getItem('selectedSites'));
         },
         data: () => ({
             dates: {},
@@ -63,8 +75,29 @@
             calendarDisabledSettings: {
                 to: new Date(2018, 1, 22),
                 from: new Date(2018, 3, 10),
-            }
+            },
+            stats: null
         }),
+        watch: {
+            stats: {
+                handler() {
+                    localStorage.setItem('stats', JSON.stringify(this.stats));
+                },
+                deep: true,
+            },
+            selectedKeywords: {
+                handler() {
+                    localStorage.setItem('selectedKeywords', JSON.stringify(this.selectedKeywords));
+                },
+                deep: true,
+            },
+            selectedSites: {
+                handler() {
+                    localStorage.setItem('selectedSites', JSON.stringify(this.selectedSites));
+                },
+                deep: true,
+            }
+        },
         methods: {
             fetchKeywords() {
                 window.axios.get('/api/keywords').then((response) => {
@@ -84,6 +117,16 @@
             },
             fetchStatistics() {
                 console.log("TODO")
+                window.axios.post('/api/stats', {
+                    'keywords': this.selectedKeywords,
+                    'sites': this.selectedSites,
+                    'dates': this.dates
+                }).then((response) => {
+                    this.stats = response.data.data
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
             }
         }
     };

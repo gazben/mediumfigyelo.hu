@@ -13,3 +13,4 @@
 
 Route::get('/keywords', 'IndexController@getKeywords');
 Route::get('/sites', 'IndexController@getSites');
+Route::post('/stats', 'IndexController@getStats');

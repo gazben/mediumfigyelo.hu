@@ -29,20 +29,12 @@ class IndexController extends Controller
      * Get statistics on on hourly basis.
      *
      * @param Request $request
-     * @param $hour
      *
      * @return string
      */
-    public function getStatistics(Request $request, $hour)
+    public function getStats(Request $request)
     {
-        $data = [];
 
-        // Filtering is done on the frontend
-        $data['keywords'] = Keyword::all(['id', 'keyword']);
-
-        return json_encode([
-            'data' => $data,
-        ]);
 
     }
 }
