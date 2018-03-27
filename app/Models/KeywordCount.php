@@ -8,6 +8,10 @@ class KeywordCount extends Model
 {
     public $timestamps = false;
 
+    protected $dates = [
+        'scrape_date',
+    ];
+
     public function siteState()
     {
         return $this->belongsTo(SiteState::class);
