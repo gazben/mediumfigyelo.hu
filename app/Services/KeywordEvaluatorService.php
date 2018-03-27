@@ -8,9 +8,13 @@ use Illuminate\Support\Collection;
 
 class KeywordEvaluatorService
 {
-    public function reEvaluate(Collection $keywords, Collection $sites)
+    protected $console = null;
+
+    public function reEvaluate(Collection $keywords, Collection $sites, $console)
     {
+        $this->console = $console;
         $this->deleteExistingKeywordCounts($keywords, $sites);
+
         return $this->findKeywords($keywords, $sites);
     }
 
@@ -29,36 +33,37 @@ class KeywordEvaluatorService
         }
     }
 
-    public function findKeywords(Collection $keywords, Collection $sites) : Collection
+    public function findKeywords(Collection $keywords, Collection $sites)
     {
-        $keywordCounts = collect();
-        foreach ($sites as $site) {
+        ini_set("memory_limit", '-1');
+        $allCount = 0;
+        foreach ($sites as $key => $site) {
+            $siteStates = $site->states()->select('id')->get();
             // Do not query directly the states. The content can be big...
             // But not just the content, contchildren too...
-            foreach ($site->states()->select('id')->get() as $state) {
+            foreach ($siteStates as $state) {
                 $state = SiteState::findOrFail($state->id);
+                $this->console->info('Starting ' . $state->site->title);
 
                 foreach ($keywords as $entry) {
-                    $count = substr_count(
+                    $count = mb_substr_count(
                         strtolower($state->content),
                         ' ' . strtolower($entry->keyword) . ' '
                     );
 
                     $tempKeywordCount = new KeywordCount();
+                    $tempKeywordCount->scrape_date = $state->scrape_date;
+                    $tempKeywordCount->site_id = $state->site_id;
                     $tempKeywordCount->count = $count;
                     $tempKeywordCount->siteState()->associate($state);
                     $tempKeywordCount->keyword()->associate($entry);
-                    // Do not save here. Save in the end. Maybe it will be faster...
-
-                    $keywordCounts->push($tempKeywordCount);
+                    $tempKeywordCount->save();
+                    $allCount++;
                 }
+
+                $this->console->info('Site ' . $key .' / ' . $sites->count()
+                    . ' | Found ' . $allCount . ' keywords. Memory: ' . ((memory_get_usage() / 1024.0) / 1024.0) . 'M');
             }
         }
-
-        foreach ($keywordCounts as $keywordCount) {
-            $keywordCount->save();
-        }
-
-        return $keywordCounts;
     }
 }

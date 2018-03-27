@@ -14,6 +14,20 @@ class KeywordSeeder extends Seeder
     {
         $keywords = [
           'soros',
+          'migráns',
+          'migránsok',
+          'kósa',
+          'ensz',
+          'orosz',
+          'fidesz',
+          'mszp',
+          'lmp',
+          'orbán',
+          'vona',
+          'jobbik',
+          'karácsony',
+          'gyurcsány',
+          'momentum',
         ];
 
         foreach ($keywords as $keyword) {

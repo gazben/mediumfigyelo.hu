@@ -43,7 +43,7 @@ class EvaluateKeywords extends Command
      */
     public function handle()
     {
-        $sites = Site::with('states')->get();
+        $sites = Site::all();
         $keywords = Keyword::all();
 
         $this->info('Evaluation started.');
@@ -61,7 +61,7 @@ class EvaluateKeywords extends Command
         }
 
         DB::transaction(function () use ($keywords, $sites) {
-            $this->keywordEvaluatorService->reEvaluate($keywords, $sites);
+            $this->keywordEvaluatorService->reEvaluate($keywords, $sites, $this);
         });
 
         $this->info('Sok boldogsagot...');

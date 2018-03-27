@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="pages p-1">
-            <h2>Oldalak</h2>
+            <h2>Oldalak <small>(többet választhatsz)</small></h2>
             <template v-for="site in sites">
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
@@ -29,11 +29,11 @@
             </template>
         </div>
         <div class="keywords p-1">
-            <h2>Kulcsszavak</h2>
+            <h2>Kulcsszavak <small>(csak egyet választhatsz)</small></h2>
             <template v-for="keyword in keywords">
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" :value="keyword.id" v-model="selectedKeywords">{{ keyword.keyword }}
+                        <input class="form-check-input" type="radio" :value="keyword.id" v-model="selectedKeyword">{{ keyword.keyword }}
                     </label>
                 </div>
             </template>
@@ -63,13 +63,13 @@
             this.fetchSites()
 
             if (localStorage.getItem('stats')) this.stats = JSON.parse(localStorage.getItem('stats'));
-            if (localStorage.getItem('selectedKeywords')) this.selectedKeywords = JSON.parse(localStorage.getItem('selectedKeywords'));
+            if (localStorage.getItem('selectedKeyword')) this.selectedKeyword = JSON.parse(localStorage.getItem('selectedKeyword'));
             if (localStorage.getItem('selectedSites')) this.selectedSites = JSON.parse(localStorage.getItem('selectedSites'));
         },
         data: () => ({
             dates: {},
             keywords: [],
-            selectedKeywords: [],
+            selectedKeyword: null,
             sites: [],
             selectedSites: [],
             calendarDisabledSettings: {
@@ -85,9 +85,9 @@
                 },
                 deep: true,
             },
-            selectedKeywords: {
+            selectedKeyword: {
                 handler() {
-                    localStorage.setItem('selectedKeywords', JSON.stringify(this.selectedKeywords));
+                    localStorage.setItem('selectedKeyword', JSON.stringify(this.selectedKeyword));
                 },
                 deep: true,
             },
@@ -116,11 +116,13 @@
                 })
             },
             fetchStatistics() {
-                console.log("TODO")
                 window.axios.post('/api/stats', {
-                    'keywords': this.selectedKeywords,
+                    'keyword': this.selectedKeyword,
                     'sites': this.selectedSites,
-                    'dates': this.dates
+                    'dates': {
+                        'beginDate': this.dates.beginDate.toUTCString(),
+                        'endDate': this.dates.endDate.toUTCString(),
+                    }
                 }).then((response) => {
                     this.stats = response.data.data
                 })
