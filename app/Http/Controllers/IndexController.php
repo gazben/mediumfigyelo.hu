@@ -41,18 +41,16 @@ class IndexController extends Controller
             'keyword' => 'required|integer',
             'sites' => 'required|array',
             'dates' => 'required|array',
-            'dates.beginDate' => 'required|string',
-            'dates.endDate' => 'required|string',
+            'dates.beginDate' => 'required|string|max:50',
+            'dates.endDate' => 'required|string|max:50',
         ]);
-
-        $faker = \Faker\Factory::create();
-        ini_set("memory_limit", '2024M');
 
         $keyword = Keyword::findOrFail($request->get('keyword'));
         $sites = Site::findOrFail($request->get('sites'));
         $beginDate = Carbon::createFromFormat(Carbon::RSS, $request->get('dates')['beginDate']);
         $endDate = Carbon::createFromFormat(Carbon::RSS, $request->get('dates')['endDate']);
 
+        $faker = \Faker\Factory::create();
         $candleSize = 3; // skip this many hours
 
         $result = collect();

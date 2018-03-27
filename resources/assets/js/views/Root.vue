@@ -1,6 +1,11 @@
 <template>
     <div>
         <div class="settings p-1">
+            <div class="row" v-if="message">
+                <div class="p-3 mb-2 col-12 bg-warning text-dark">
+                    {{ message }}
+                </div>
+            </div>
             <h2>Beállítások</h2>
             <div class="row">
                 <div class="col-4">
@@ -67,6 +72,7 @@
             if (localStorage.getItem('selectedSites')) this.selectedSites = JSON.parse(localStorage.getItem('selectedSites'));
         },
         data: () => ({
+            message: null,
             dates: {},
             keywords: [],
             selectedKeyword: null,
@@ -116,6 +122,20 @@
                 })
             },
             fetchStatistics() {
+                if(!this.dates.beginDate) {
+                    this.message = 'Nem töltötted ki a kezdő időpontot'
+                    return
+                }
+                if(!this.dates.endDate) {
+                    this.message = 'Nem töltötted ki a végidőpontot'
+                    return
+                }
+
+                if(this.dates.beginDate > this.dates.endDate){
+                    this.message = 'A kezdődátum előbb van mint a végdátum'
+                    return
+                }
+
                 window.axios.post('/api/stats', {
                     'keyword': this.selectedKeyword,
                     'sites': this.selectedSites,
@@ -124,11 +144,14 @@
                         'endDate': this.dates.endDate.toUTCString(),
                     }
                 }).then((response) => {
+                    this.message = null
                     this.stats = response.data.data
                     this.renderChart(stats)
                 })
-                .catch(function (error) {
+                .catch((error) => {
                     console.log(error)
+                    console.log(error.response.data.message)
+                    this.message = error.response.data.message
                 })
             }
         }
