@@ -49,8 +49,22 @@
                 <chart :chartData="stats" />
             </template>
             <template v-else>
-                <h4>Válassz ki paramétereket a beállításoknál!</h4>
+                Válassz ki paramétereket a beállításoknál!
             </template>
+        </div>
+        <hr>
+        <div class="settings p-1">
+            <h3>Mire jó az oldal?</h3>
+            Meg tudod vele nézni táblázatokkal, hogy bizonyos oldalak kezdőlapjai egy adott idő során hányszor tartalmazták az adott szót.
+            A cél az volt, hogy a kampány végén végignézhessem, hogy mik voltak a slágertémák és egyes oldalak mely témaköröket tekintették fontosnak a tájékoztatásban.
+            <h3>Honnan vannak az adatok?</h3>
+            A kampány kezdete óta gyűjtöm őket. Minden órában a felsorolt oldalakat lekértem és elmentettem. A jelenlegi archivum 3.5 GB nagyságú.
+            <h3>Le lehet tölteni az adatokat?</h3>
+            Még nem, de elérhetővé fogom tenni az adathalmazt amiből a rendszer dolgozik.
+            <h3>Miért nem kereshetek rá saját kulcsszavakra?</h3>
+            Mert nincs annyi számítási kapacitásom, hogy ~1 hónapnyi archivumot pár másodperc alatt végignézzek.
+            <h3>Javasolhatok saját kulcsszót?</h3>
+            Igen. Írj emailt nekem.
         </div>
     </div>
 </template>
