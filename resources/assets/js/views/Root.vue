@@ -146,12 +146,16 @@
                 }).then((response) => {
                     this.message = null
                     this.stats = response.data.data
-                    this.renderChart(stats)
+                    this.renderChart(this.stats)
                 })
                 .catch((error) => {
                     console.log(error)
-                    console.log(error.response.data.message)
-                    this.message = error.response.data.message
+                    if(error.response && error.response.data) {
+                        console.log(error.response.data.message)
+                        this.message = error.response.data.message
+                    } else {
+                        this.message = 'Hiba történt. Frissítsd az oldalt hátha megjavul. Ha nem akkor küldj emailt.'
+                    }
                 })
             }
         }

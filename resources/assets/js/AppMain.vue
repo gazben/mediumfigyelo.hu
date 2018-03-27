@@ -19,6 +19,11 @@
 
         <footer class="footer">
             <hr>
+            <cookie-law theme="base" buttonText="Értem">
+                <div slot="message">
+                    Az oldalon <a href="https://hu.wikipedia.org/wiki/HTTP-s%C3%BCti">sütiket</a> használok a jobb működés érdekében.
+                </div>
+            </cookie-law>
             <div class="container container-fluid">
                 <div class="row py-4">
                     <div class="col-12">
@@ -31,6 +36,16 @@
                                         <li><strong>Támogass (ETH):</strong> 0x33546c203afdec344ec035a9dfd97741efba5f68</li>
                                         <li><strong>Kód:</strong> <a target="_blank" href="https://github.com/gazben/mediumfigyelo.hu">https://github.com/gazben/mediumfigyelo.hu</a></li>
                                     </ul>
+                                </div>
+                                <div class="col-2"></div>
+                                <div class="col-5">
+                                    <strong>Vigyázz, oldal által kimutatt adatok tartalmazhatnak hibákat!</strong>
+                                    <br><br>
+                                    A programot szabadidőmben készítettem el
+                                    <a href="https://www.reddit.com/r/hungary/comments/7zan9b/k%C3%B3dol%C3%A1sadatelemz%C3%A9s_seg%C3%ADts%C3%A9gk%C3%A9r%C3%A9s/">(eredeti kezdeményezés)</a>,
+                                    semmilyen pártfinanszírozás, külföldi tőke, idegen ügynök nem vett részt benne.
+                                    <br><br>
+                                    Ha szeretnél résztvenni a fejlesztésben akkor a github link-en megteheted, ha kérdésed van írj nyugodtan!
                                 </div>
                             </div>
                         </div>
