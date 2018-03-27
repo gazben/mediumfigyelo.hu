@@ -41,7 +41,7 @@
         <div class="chart p-1">
             <h2>Diagram</h2>
             <template v-if="stats !== null">
-                <chart :data="stats" />
+                <chart :chartData="stats" />
             </template>
             <template v-else>
                 <h4>Válassz ki paramétereket a beállításoknál!</h4>
@@ -125,6 +125,7 @@
                     }
                 }).then((response) => {
                     this.stats = response.data.data
+                    this.renderChart(stats)
                 })
                 .catch(function (error) {
                     console.log(error)

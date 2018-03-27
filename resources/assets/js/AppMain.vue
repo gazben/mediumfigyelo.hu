@@ -26,8 +26,10 @@
                             <div class="row">
                                 <div class="col-5">
                                     <ul style="list-style: none; color: #373737">
-                                        <li><a href="#">Impresszum</a></li>
-                                        <li><a href="#">GYIK</a></li>
+                                        <li><strong>Elérhetőség:</strong><a href=mailto:hello@mediumfigyelo.hu#">hello@mediumfigyelo.hu</a></li>
+                                        <li><strong>Inspiráció:</strong><a target="_blank" href="https://media.ccc.de/v/34c3-9106-pointing_fingers_at_the_media">Pointing Fingers at 'The Media'</a></li>
+                                        <li><strong>Támogass (ETH):</strong> 0x33546c203afdec344ec035a9dfd97741efba5f68</li>
+                                        <li><strong>Kód:</strong> <a target="_blank" href="https://github.com/gazben/mediumfigyelo.hu">https://github.com/gazben/mediumfigyelo.hu</a></li>
                                     </ul>
                                 </div>
                             </div>

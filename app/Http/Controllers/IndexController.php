@@ -45,6 +45,7 @@ class IndexController extends Controller
             'dates.endDate' => 'required|string',
         ]);
 
+        $faker = \Faker\Factory::create();
         ini_set("memory_limit", '2024M');
 
         $keyword = Keyword::findOrFail($request->get('keyword'));
@@ -59,7 +60,7 @@ class IndexController extends Controller
             $siteKeywordCounts = KeywordCount::where('site_id', $site->id)
                 ->where('keyword_id', $keyword->id)
                 ->whereBetween('scrape_date', [$beginDate, $endDate])
-                ->select('keyword_counts.id')
+                ->select('count')
                 ->get();
 
             $siteKeywordCounts = $siteKeywordCounts->filter(function ($value) {
@@ -68,7 +69,8 @@ class IndexController extends Controller
 
             $result->push([
                 'label' => $site->title,
-                'data' => $siteKeywordCounts->pluck('count')
+                'backgroundColor' => $faker->hexColor,
+                'data' => $siteKeywordCounts->pluck('count'),
             ]);
         }
 
