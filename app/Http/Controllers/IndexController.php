@@ -47,8 +47,8 @@ class IndexController extends Controller
 
         $keyword = Keyword::findOrFail($request->get('keyword'));
         $sites = Site::findOrFail($request->get('sites'));
-        $beginDate = Carbon::createFromFormat(Carbon::RSS, $request->get('dates')['beginDate']);
-        $endDate = Carbon::createFromFormat(Carbon::RSS, $request->get('dates')['endDate']);
+        $beginDate = Carbon::createFromFormat(Carbon::RSS, $request->get('dates')['beginDate'])->startOfDay();
+        $endDate = Carbon::createFromFormat(Carbon::RSS, $request->get('dates')['endDate'])->addDay()->endOfDay();
 
         $faker = \Faker\Factory::create();
         $candleSize = 3; // skip this many hours
@@ -58,7 +58,7 @@ class IndexController extends Controller
             $siteKeywordCounts = KeywordCount::where('site_id', $site->id)
                 ->where('keyword_id', $keyword->id)
                 ->whereBetween('scrape_date', [$beginDate, $endDate])
-                ->select('count')
+                ->select(['count', 'scrape_date'])
                 ->get();
 
             $siteKeywordCounts = $siteKeywordCounts->filter(function ($value) {
@@ -74,8 +74,10 @@ class IndexController extends Controller
 
         // Get every 3 hours between (begin and end date) 7:00, 10:00, 13:00, 16:00, 19:00, 22:00
         $labels = collect();
-        for($currentDate = $beginDate->hour(7)->minute(0)->second(0); $currentDate->lte($endDate); $currentDate->addHours($candleSize)) {
-            $labels->push($currentDate->format('Y-m-d H:i'));
+        for($currentDate = $beginDate; $currentDate->lte($endDate); $currentDate->addHours($candleSize)) {
+            if( $currentDate->hour <= 22 && $currentDate->hour >= 7){
+                $labels->push($currentDate->format('Y-m-d H:i'));
+            }
         }
 
         $result = [
