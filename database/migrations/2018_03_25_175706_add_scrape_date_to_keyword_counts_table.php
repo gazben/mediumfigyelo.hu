@@ -14,7 +14,7 @@ class AddScrapeDateToKeywordCountsTable extends Migration
     public function up()
     {
         Schema::table('keyword_counts', function (Blueprint $table) {
-            $table->date('scrape_date')->nullable();
+            $table->dateTime('scrape_date')->nullable();
         });
     }
 
