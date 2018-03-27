@@ -140,6 +140,17 @@
                     this.message = 'Nem töltötted ki a kezdő időpontot'
                     return
                 }
+
+                if(this.selectedKeyword === null) {
+                    this.message = 'Válassz kulcsszót'
+                    return
+                }
+
+                if(this.selectedSites.length === 0) {
+                    this.message = 'Válassz oldalakat'
+                    return
+                }
+
                 if(!this.dates.endDate) {
                     this.message = 'Nem töltötted ki a végidőpontot'
                     return
