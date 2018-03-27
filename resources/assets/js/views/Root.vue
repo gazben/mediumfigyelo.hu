@@ -146,7 +146,6 @@
                 }).then((response) => {
                     this.message = null
                     this.stats = response.data.data
-                    this.renderChart(this.stats)
                 })
                 .catch((error) => {
                     console.log(error)
