@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use \ForceUTF8\Encoding;
 use App\Models\KeywordCount;
 use App\Models\SiteState;
 use Illuminate\Support\Collection;
@@ -48,7 +47,7 @@ class KeywordEvaluatorService
 
                 foreach ($keywords as $entry) {
                     $keyword = $entry->keyword;
-                    $content = Encoding::fixUTF8($state->content);
+                    $content = $state->content;
 
                     $count = mb_substr_count(
                         strtolower($content),
