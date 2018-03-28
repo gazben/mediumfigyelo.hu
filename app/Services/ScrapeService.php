@@ -2,14 +2,15 @@
 
 namespace App\Services;
 
-use App\Models\Site;
-use App\Models\SiteState;
 use Carbon\Carbon;
+use App\Models\Site;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\ServerException;
+use ForceUTF8\Encoding;
+use App\Models\SiteState;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Exception\ClientException;
 
 class ScrapeService
 {
@@ -68,7 +69,7 @@ class ScrapeService
     {
         $result = new SiteState();
         $result->site()->associate($site);
-        $result->content = utf8_encode($content);
+        $result->content = Encoding::fixUTF8($content);
         $result->scrape_date = Carbon::now();
 
         return $result;
