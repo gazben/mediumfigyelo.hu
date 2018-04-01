@@ -36,7 +36,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command(ScrapeSite::class)->hourly();
-        // $schedule->command(EvaluateKeywords::class)->hourly();
+        $schedule->command(EvaluateKeywords::class)->daily();
     }
 
     /**
