@@ -67,7 +67,7 @@ class IndexController extends Controller
 
             $result->push([
                 'label' => $site->title,
-                'backgroundColor' => $faker->hexColor,
+                'backgroundColor' => 'rgba(' . $faker->rgbColor . ',0.3)',
                 'data' => $siteKeywordCounts->pluck('count'),
             ]);
         }
