@@ -57,9 +57,9 @@
             Megtekinthető, hogy bizonyos oldalak kezdőlapjai egy adott idő során hányszor tartalmaztak egy adott szót.
             A cél az volt, hogy a kampány végén végignézhessem, hogy mik voltak a slágertémák, és egyes oldalak mely témaköröket tekintették fontosnak.
             <h3>Honnan vannak az adatok?</h3>
-            A kampány kezdete óta gyűjtöm őket. Minden órában a felsorolt oldalakat lekértem, és elmentettem. A jelenlegi archivum 3.5 GB nagyságú.
+            A kampány kezdete óta gyűjtöm őket. Minden órában a felsorolt oldalakat lekértem, és elmentettem.
             <h3>Le lehet tölteni az adatokat?</h3>
-            Még nem, de elérhetővé fogom tenni az adathalmazt amiből a rendszer dolgozik.
+            Igen: <strong><a href="https://mediumfigyelo.hu/files/backup.sql">Letöltés</a></strong>
             <h3>Hogyan működik ez az egész?</h3>
             Minden órában lekérem az összes felsorolt oldalt. Ezeket az adatokat megadott időközönként kiértékelem (megnézem, hogy a felvett szavak hányszor szerepelnek az oldalon).
             Ezt a kiértékelést lehet itt az oldalon megtekinteni. Emiatt sajnos az már nem lehetséges, hogy új oldalt adjak a listához, hiszen ahhoz vissza kéne mennem az időben.
