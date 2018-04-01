@@ -27,8 +27,7 @@
             <template v-for="site in sites">
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" :value="site.id" v-model="selectedSites"> <a
-                            :href="site.url" target="_blank">{{ site.title }}</a>
+                        <input class="form-check-input" type="checkbox" :value="site.id" v-model="selectedSites"> {{ site.title }}
                     </label>
                 </div>
             </template>
