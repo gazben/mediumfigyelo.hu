@@ -96,7 +96,7 @@
             selectedSites: [],
             calendarDisabledSettings: {
                 to: new Date(2018, 1, 22),
-                from: new Date(2018, 3, 10),
+                from: Date.now(),
             },
             stats: null
         }),
