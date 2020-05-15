@@ -21,6 +21,7 @@ cache:
 ###
 install_composer:
   stage: install
+  tags: [docker]
   before_script:
     - composer global require hirak/prestissimo --profile --prefer-dist --no-progress --no-suggest --optimize-autoloader --no-interaction
   script:
@@ -36,6 +37,7 @@ install_composer:
 
 inspect:
   stage: test
+  tags: [docker]
   allow_failure: true
   cache:
     key: ${CI_COMMIT_SHA}
@@ -49,6 +51,7 @@ inspect:
 
 lint:
   stage: test
+  tags: [docker]
   cache:
     key: ${CI_COMMIT_SHA}
     policy: pull
@@ -61,6 +64,7 @@ lint:
 
 test:
   stage: test
+  tags: [docker]
   cache:
     key: ${CI_COMMIT_SHA}
     policy: pull
@@ -98,5 +102,6 @@ test:
 
 build_master:
   extends: .build_template
+  tags: [docker]
   only:
     - master
