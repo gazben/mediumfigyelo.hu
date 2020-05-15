@@ -31,6 +31,21 @@ install_composer:
     paths:
       - vendor/
 
+install_npm:
+  image: node:12
+  tags: [docker]
+  stage: install
+  script:
+    - npm install
+    - npm run production
+  cache:
+    paths:
+      - public/
+  artifacts:
+    expire_in: 15 mins
+    paths:
+      - public/
+
 ###
 # Test
 ###
