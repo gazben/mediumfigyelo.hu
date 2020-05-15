@@ -20,7 +20,7 @@ class ScrapeSite extends Command
      *
      * @var string
      */
-    protected $description = 'Scrape the ';
+    protected $description = 'Scrape the sites in the sites table';
 
     private $scrapeService;
 
