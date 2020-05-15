@@ -1,0 +1,25 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_USER: "${DB_DATABASE}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_DATABASE: "${DB_DATABASE}"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      default:
+        aliases:
+          - db
+          - mysql
+
+  backend:
+    image: "${IMAGE_TAG}"
+    restart: always
+    volumes:
+      - ./app_storage:/var/www/html/storage/app
+      - ./.env:/var/www/html/.env

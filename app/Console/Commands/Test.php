@@ -42,7 +42,7 @@ class Test extends Command
         }
 
         $process = new Process('vendor' . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR .
-            'phpunit -v -c phpunit_ci.xml');
+            'phpunit -v -c phpunit.xml');
         $process->setWorkingDirectory(base_path());
 
         return $process->run(function ($type, $buffer) {

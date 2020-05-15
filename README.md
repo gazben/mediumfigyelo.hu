@@ -17,4 +17,4 @@ php artisan scrape:evaluate
 
 ## Example screenshot
 
-![alt text](docs/screen.jpg)
+![example screen](docs/screen.jpg)
