@@ -9,13 +9,13 @@
             <h2>Beállítások</h2>
             <div class="row">
                 <div class="col-4">
-                    <datepicker language="hu" v-model="dates.beginDate" :disabled="calendarDisabledSettings" maximum-view="day" format="yyyy-MM-dd" input-class="form-control" ></datepicker>
+                    <datepicker language="hu" v-model="dates.beginDate" maximum-view="day" format="yyyy-MM-dd" input-class="form-control" ></datepicker>
                 </div>
                 <div class="col-1">
                      <strong>-</strong>
                 </div>
                 <div class="col-4">
-                     <datepicker language="hu" v-model="dates.endDate" :disabled="calendarDisabledSettings" maximum-view="day" format="yyyy-MM-dd" input-class="form-control" ></datepicker>
+                     <datepicker language="hu" v-model="dates.endDate" maximum-view="day" format="yyyy-MM-dd" input-class="form-control" ></datepicker>
                 </div>
                 <div class="col-3">
                     <button class="btn btn-primary" @click="fetchStatistics">Lekérés</button>

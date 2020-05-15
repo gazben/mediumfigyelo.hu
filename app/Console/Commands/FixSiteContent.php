@@ -53,7 +53,7 @@ class FixSiteContent extends Command
                 $state->content = Encoding::fixUTF8($state->content);
                 $state->save();
 
-                $this->info('Progress:' . $currentCount++ . '/' . $siteStatesCount);
+                $this->info('Progress: ' . $currentCount++ . '/' . $siteStatesCount);
             }
         }
     }
