@@ -90,7 +90,6 @@ test:
     - cp .env.testing .env
     - composer install --profile --prefer-dist --no-progress --no-suggest --optimize-autoloader --no-interaction
     - php artisan key:generate
-    - php artisan jwt:secret
     - php artisan test
 
 ###
